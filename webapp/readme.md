@@ -18,12 +18,39 @@ Paste this exactly:
     "ExposeHeaders": ["ETag"]
   }
 ]
+
+Correct S3 Bucket Policy
+
+Use this:
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowUploadToS3",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:PutObject",
+      "Resource": "arn:aws:s3:::unipiper-bucket-unique-name/uploads/*"
+    }
+  ]
+}
+
+
+
+
+
+
 ##dockerise the app
 After installation succeeds:
 
 nano Dockerfile
 docker build -t asif-app .
 docker run -d -p 3000:3000 --name asif-app asif-app
+
+
+
+
 Option 1: Push Docker Image to ECR (Recommended for EKS)
 1. Create ECR Repository
 aws ecr create-repository \
