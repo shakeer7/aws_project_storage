@@ -18,4 +18,9 @@ Paste this exactly:
     "ExposeHeaders": ["ETag"]
   }
 ]
+##dockerise the app
+After installation succeeds:
 
+nano Dockerfile
+docker build -t asif-app .
+docker run -d -p 3000:3000 --name asif-app asif-app
